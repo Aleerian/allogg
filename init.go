@@ -24,6 +24,14 @@ const (
 	defaultMode            = DevelopmentMode
 )
 
+// Цветовые коды
+const (
+	Reset  = "\033[0m"
+	Red    = "\033[31m"
+	Green  = "\033[32m"
+	Yellow = "\033[33m"
+)
+
 type Parameters struct {
 	Mode          string
 	ServerVersion string
@@ -46,6 +54,20 @@ func setMode(mode string) error {
 	}
 	loggerMode = mode
 	return nil
+}
+
+// Возвращает цвет для уровня логирования
+func getColor(level string) string {
+	switch level {
+	case "INFO":
+		return Green
+	case "ERROR":
+		return Red
+	case "WARN":
+		return Yellow
+	default:
+		return Reset
+	}
 }
 
 func setServerVersion(version string) {

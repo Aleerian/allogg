@@ -105,6 +105,7 @@ func getFoundationLogData(message string, level string) *LogData {
 	var file string
 	var line int
 
+	color := getColor(level)
 	if level == levelRequestResult {
 		_, file, line, _ = runtime.Caller(4)
 	} else {
@@ -113,6 +114,7 @@ func getFoundationLogData(message string, level string) *LogData {
 	point := fmt.Sprintf(`%s:%d`, getRelativePath(file), line)
 	timestamp := time.Now().UTC().Format(time.RFC3339)
 	contextBody := GetContextBody()
+	level = fmt.Sprintf("%s%s%s", color, level, Reset)
 	if contextBody == nil {
 		return &LogData{
 			Level:           level,
