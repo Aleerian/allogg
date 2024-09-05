@@ -1,4 +1,4 @@
-module github.com/execaus/exloggo
+module github.com/Aleerian/allogg
 
 go 1.19
 
